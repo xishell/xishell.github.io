@@ -196,12 +196,14 @@ li::before {
 }
 
 .sub-content {
-  display: none;
+    max-height: 0;
+    overflow: hidden;
   padding-left: 2rem;
+    transition: max-height 0.5s;
 }
 
 input:checked ~ .sub-content {
-  display: block;
+    max-height: 400px;
 }
 
 dt::before {
