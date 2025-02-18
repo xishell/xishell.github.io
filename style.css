@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;700&display=swap");
 html,
 body,
 div,
@@ -79,12 +81,12 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -99,122 +101,141 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 
 body {
-	line-height: 1;
+  line-height: 1;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: "";
-	content: none;
+  content: "";
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;700&display=swap");
-
 :root {
-	--main-bg-color: #171717;
-	--main-fg-color: #424242;
-	--main-txt-color: #EDEDED;
+  --main-bg-color: #171717;
+  --main-fg-color: #424242;
+  --main-txt-color: #EDEDED;
 }
 
 body {
-	font-family: "Roboto Mono", monospace;
-	background-color: var(--main-bg-color);
+  font-family: "Roboto Mono", monospace;
+  background-color: var(--main-bg-color);
 }
 
 b {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .container {
-	padding-top: 5rem;
-	width: min(100% - 2rem, 60rem);
-	margin-inline: auto;
-	color: var(--main-txt-color);
-	line-height: 2rem;
+  padding-top: 5rem;
+  width: min(100% - 2rem, 60rem);
+  margin-inline: auto;
+  color: var(--main-txt-color);
+  line-height: 2rem;
 }
 
 h1 {
-	font-weight: 400;
-	font-size: 48px;
-	line-height: 3rem;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 3rem;
 }
 
 h2 {
-	font-size: 24px;
-	color: #707070;
+  font-size: 24px;
+  color: #707070;
 }
 
 a {
-	text-decoration: none;
-	color: #EDEDED;
+  text-decoration: none;
+  color: #EDEDED;
 }
 
 input {
-	display: none;
+  display: none;
 }
 
 label {
-	cursor: pointer;
-	font-size: 18px;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 label::before {
-	content: "[+] ";
+  content: "[+] ";
 }
 
 input:checked + label::before {
-	content: "[-] ";
+  content: "[-] ";
 }
 
-ul li::before {
-	content: "\2022";
-	color: #DA0037;
-	display: inline-block;
-	width: 1em;
-	font-weight: 700;
+li::before {
+  content: "•";
+  color: #DA0037;
+  display: inline-block;
+  width: 1em;
+  font-weight: 700;
 }
 
 .sub-content {
-	display: none;
-	padding-left: 2rem;
+  display: none;
+  padding-left: 2rem;
 }
 
 input:checked ~ .sub-content {
-	display: block;
+  display: block;
 }
 
-
 dt::before {
-	content: "\2022";
-	color: #DA0037;
-	display: inline-block;
-	width: 1em;
-	font-weight: 700;
+  content: "•";
+  color: #DA0037;
+  display: inline-block;
+  width: 1em;
+  font-weight: 700;
 }
 
 dd {
-	line-height: 1.3rem;
-	padding-left: 2em;
-	font-size: 14px;
+  line-height: 1.3rem;
+  padding-left: 2em;
+  font-size: 14px;
 }
+
+.contact-content span {
+  position: relative;
+  text-decoration: none;
+  transition: all 0.35s ease;
+}
+.contact-content span::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #EDEDED;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+.contact-content span:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}/*# sourceMappingURL=index.css.map */
