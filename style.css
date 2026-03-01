@@ -195,15 +195,23 @@ li::before {
   font-weight: 700;
 }
 
+.content > div {
+  margin-top: 1rem;
+}
+
 .sub-content {
-    max-height: 0;
-    overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
   padding-left: 2rem;
-    transition: max-height 0.5s;
+}
+
+.sub-content > * {
+  overflow: hidden;
 }
 
 input:checked ~ .sub-content {
-    max-height: 400px;
+  grid-template-rows: 1fr;
 }
 
 dt::before {
@@ -220,12 +228,12 @@ dd {
   font-size: 14px;
 }
 
-.contact-content span {
+.content a span {
   position: relative;
   text-decoration: none;
   transition: all 0.35s ease;
 }
-.contact-content span::before {
+.content a span::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -237,7 +245,7 @@ dd {
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
 }
-.contact-content span:hover::before {
+.content a span:hover::before {
   visibility: visible;
   transform: scaleX(1);
-}/*# sourceMappingURL=index.css.map */
+}
