@@ -5,166 +5,166 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Elliot Steffensen — software engineer and sailor. Bare-metal RISC-V encrypted chat, fullstack web apps, and offshore racing." />
-    <meta name="theme-color" content="#171717" />
+    <meta name="theme-color" content="#111111" />
     <link rel="stylesheet" href="style.css" />
     <title>Elliot Steffensen</title>
   </head>
 
   <body>
-    <div class="container">
-      <header>
-        <h1>Elliot Steffensen</h1>
-        <h2>Software engineer and sailor</h2>
-      </header>
+    <div class="window">
+      <div class="titlebar">
+        <span class="titlebar-left">╭─ elliot@steffensens.io</span>
+        <span class="titlebar-right">── NOR ─╮</span>
+      </div>
+
       <div class="content">
-        <div class="projects">
+        <header>
+          <h1>Elliot Steffensen</h1>
+          <p class="tagline">Software engineer and sailor</p>
+        </header>
+
+        <div class="section">
           <input type="checkbox" id="projects" checked />
-          <label for="projects">Projects</label>
-          <section class="projects-content sub-content">
+          <label for="projects">projects</label>
+          <section class="sub-content">
             <div>
-              <dl>
-                <dt>
-                  <a href="https://github.com/xishell/crypt-chat" target="_blank" rel="noopener noreferrer">
-                    <span><b>Crypt-Chat on RISC-V</b></span>
-                  </a>
-                </dt>
-                <dd>
+              <div class="entry">
+                <div class="entry-header">
+                  <a href="https://github.com/xishell/crypt-chat" target="_blank" rel="noopener noreferrer">Crypt-Chat on RISC-V</a>
+                </div>
+                <p class="entry-desc">
                   End-to-end encrypted chat on a bare-metal RISC-V microcontroller
                   with no OS or standard library. ChaCha20-Poly1305 AEAD, bit-banged
                   software UART with ISR-driven RX, and a framed protocol with CRC16
                   integrity. Python client shares the same C crypto code via ctypes.
-                </dd>
-                <dt>
-                  <a href="https://uhabit.xyz" target="_blank" rel="noopener noreferrer">
-                    <span><b>uHabit</b></span>
-                  </a>
-                </dt>
-                <dd>
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">
+                  <a href="https://uhabit.xyz" target="_blank" rel="noopener noreferrer">uHabit</a>
+                </div>
+                <p class="entry-desc">
                   Fullstack habit tracking app built with SvelteKit, deployed on
                   Cloudflare Workers with D1 (SQLite). Designed the REST API with
                   Drizzle ORM, Zod validation, ETag caching, rate limiting, and
                   atomic batch operations.
-                </dd>
-                <dt>
-                  <a href="https://github.com/xishell/calendar-splitter" target="_blank" rel="noopener noreferrer">
-                    <span><b>Calendar Feed Splitter</b></span>
-                  </a>
-                </dt>
-                <dd>
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">
+                  <a href="https://github.com/xishell/calendar-splitter" target="_blank" rel="noopener noreferrer">Calendar Feed Splitter</a>
+                </div>
+                <p class="entry-desc">
                   Python pipeline that fetches upstream ICS calendars, classifies
                   events via configurable pattern-matching strategies, and outputs
                   per-course tokenized feeds with template-based rewriting and
                   ETag caching.
-                </dd>
-              </dl>
+                </p>
+              </div>
             </div>
           </section>
         </div>
-        <div class="edu">
+
+        <div class="section">
           <input type="checkbox" id="edu" />
-          <label for="edu">Education</label>
-          <section class="edu-content sub-content">
+          <label for="edu">education</label>
+          <section class="sub-content">
             <div>
-              <dl>
-                <dt>
-                  <b>KTH Royal Institute of Technology</b> / Computer Engineering
-                </dt>
-                <dd>
-                  Bachelor's degree (2024-2027). Coursework in computer hardware
+              <div class="entry">
+                <div class="entry-header">KTH Royal Institute of Technology <span class="dim">/ Computer Engineering</span></div>
+                <p class="entry-desc">
+                  Bachelor's degree (2024–2027). Coursework in computer hardware
                   engineering, data structures &amp; algorithms, digital design,
                   concurrent programming, and networks.
-                </dd>
-              </dl>
+                </p>
+              </div>
             </div>
           </section>
         </div>
-        <div class="exper">
+
+        <div class="section">
           <input type="checkbox" id="exper" />
-          <label for="exper">Experience</label>
-          <section class="exper-content sub-content">
+          <label for="exper">experience</label>
+          <section class="sub-content">
             <div>
-              <dl>
-                <dt><b>Stockholm Sailing Association</b> / Sailing Instructor</dt>
-                <dd>
+              <div class="entry">
+                <div class="entry-header">Stockholm Sailing Association <span class="dim">/ Sailing Instructor</span></div>
+                <p class="entry-desc">
                   Design and deliver training programs for competitive youth
                   sailors, focused on racing technique and tactics.
-                </dd>
-                <dt><b>Coop Sverige AB</b> / Masterdata Analyst</dt>
-                <dd>
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">Coop Sverige AB <span class="dim">/ Masterdata Analyst</span></div>
+                <p class="entry-desc">
                   Maintained product master data quality in automated warehouse
                   management systems. Automated repetitive data verification tasks
                   to reduce manual processing time.
-                </dd>
-              </dl>
+                </p>
+              </div>
             </div>
           </section>
         </div>
-        <div class="skills">
+
+        <div class="section">
           <input type="checkbox" id="skills" />
-          <label for="skills">Skills</label>
-          <section class="skills-content sub-content">
+          <label for="skills">skills</label>
+          <section class="sub-content">
             <div>
-              <ul>
-                <li><b>Languages</b> - C, Go, Python, Bash, Java, TypeScript</li>
-                <li><b>Systems</b> - Linux, concurrent programming, TCP/IP, UART/serial, HTTP/REST</li>
-                <li><b>Tools</b> - Git, Meson, Make, Docker, GitHub Actions, NGINX</li>
-              </ul>
+              <div class="skill-row"><span class="skill-label">languages</span> C, Go, Python, Bash, Java, TypeScript</div>
+              <div class="skill-row"><span class="skill-label">systems</span> Linux, concurrent programming, TCP/IP, UART/serial, HTTP/REST</div>
+              <div class="skill-row"><span class="skill-label">tools</span> Git, Meson, Make, Docker, GitHub Actions, NGINX</div>
             </div>
           </section>
         </div>
-        <div class="sailing">
+
+        <div class="section">
           <input type="checkbox" id="sailing" />
-          <label for="sailing">Sailing</label>
-          <section class="sailing-content contact-content sub-content">
+          <label for="sailing">sailing</label>
+          <section class="sub-content">
             <div>
-              Bowman onboard
-              <a
-                href="https://www.wetjobracing.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><span><b>Wetjob Racing</b></span></a
-              >
-              &mdash; 2000+ nautical miles in offshore races.
-              <dl>
-                <dt><b>RORC Baltic Sea Race</b> / 2024</dt>
-                <dd>600 nautical mile race starting and ending in Helsinki</dd>
-                <dt><b>Gotland Runt</b> / 2024</dt>
-                <dd>Race around Gotland island, Sweden's biggest yearly offshore race</dd>
-              </dl>
+              <p class="entry-desc" style="margin-top: 0.5rem;">
+                Bowman onboard
+                <a href="https://www.wetjobracing.com/" target="_blank" rel="noopener noreferrer">Wetjob Racing</a>
+                &mdash; 2000+ nautical miles in offshore races.
+              </p>
+              <div class="entry">
+                <div class="entry-header">RORC Baltic Sea Race <span class="dim">/ 2024</span></div>
+                <p class="entry-desc">600 nautical mile race starting and ending in Helsinki</p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">Gotland Runt <span class="dim">/ 2024</span></div>
+                <p class="entry-desc">Race around Gotland island, Sweden's biggest yearly offshore race</p>
+              </div>
             </div>
           </section>
         </div>
-        <div class="contact">
+
+        <div class="section">
           <input type="checkbox" id="contact" />
-          <label for="contact">Contact</label>
-          <section class="contact-content sub-content">
+          <label for="contact">contact</label>
+          <section class="sub-content">
             <div>
-              <ul>
-                <li>
-                  <a href="mailto:elliot@steffensens.io"
-                    ><span><b>Email</b> - elliot@steffensens.io</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/xishell"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    ><span><b>GitHub</b> - xishell</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/ellste"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    ><span><b>LinkedIn</b> - Elliot Steffensen</span></a
-                  >
-                </li>
-              </ul>
+              <div class="contact-row">
+                <a href="mailto:elliot@steffensens.io">email</a>
+                <span class="dim">elliot@steffensens.io</span>
+              </div>
+              <div class="contact-row">
+                <a href="https://github.com/xishell" target="_blank" rel="noopener noreferrer">github</a>
+                <span class="dim">xishell</span>
+              </div>
+              <div class="contact-row">
+                <a href="https://www.linkedin.com/in/ellste" target="_blank" rel="noopener noreferrer">linkedin</a>
+                <span class="dim">Elliot Steffensen</span>
+              </div>
             </div>
           </section>
         </div>
+      </div>
+
+      <div class="statusbar">
+        <span class="statusbar-left">╰─ NORMAL</span>
+        <span class="statusbar-right">6 sections ─╯</span>
       </div>
     </div>
   </body>
