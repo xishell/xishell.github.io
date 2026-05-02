@@ -44,11 +44,16 @@
                   <a href="https://github.com/II1302-8/dockpulse" target="_blank" rel="noopener noreferrer">DockPulse</a>
                 </div>
                 <p class="entry-desc">
-                  Team project for KTH course II1302. Real-time harbor berth
-                  availability monitoring with a FastAPI + PostgreSQL backend,
-                  React + TypeScript frontend, and ESP32 sensor nodes
-                  publishing over an mTLS-secured MQTT broker with a private
-                  CA hierarchy.
+                  Team project for KTH course II1302: real-time harbor berth
+                  monitoring with a FastAPI + PostgreSQL backend, React +
+                  TypeScript frontend, and ESP32 sensor nodes over MQTT.
+                  Built the ESP32 firmware, designed the MQTT topic schema
+                  and a two-tier PKI (service + device CAs with short-lived
+                  device certs), wrote the Docker Compose dev environment
+                  and GitHub Actions CI, and scaffolded the backend and
+                  frontend. Self-hosted on a homelab with Komodo for
+                  deployments, Traefik for ingress, and Grafana + Loki for
+                  observability.
                 </p>
               </div>
               <div class="entry">
