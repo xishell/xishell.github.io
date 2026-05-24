@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Security contact and coordinated-disclosure policy for Elliot Steffensen."
+    />
+    <meta name="theme-color" content="#111111" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Security · Elliot Steffensen</title>
+  </head>
+
+  <body>
+    <div class="window">
+      <div class="titlebar">
+        <span class="titlebar-left">╭─ elliot@steffensens.io: /security</span>
+        <span class="titlebar-right">── NOR ─╮</span>
+      </div>
+
+      <div class="content">
+        <header>
+          <h1>Security</h1>
+          <p class="tagline">Contact and coordinated-disclosure policy</p>
+        </header>
+
+        <p class="entry-desc" style="padding-left: 0; margin-top: 0">
+          I report security vulnerabilities I find in third-party services and
+          operate paid security engagements for platforms in fintech, trading,
+          and adjacent domains. This page describes how to reach me and what to
+          expect.
+        </p>
+
+        <div class="section">
+          <input type="checkbox" id="contact" checked />
+          <label for="contact">contact</label>
+          <section class="sub-content">
+            <div>
+              <div class="contact-row">
+                <a href="mailto:security@steffensens.io">email</a>
+                <span class="dim">security@steffensens.io</span>
+              </div>
+              <div class="contact-row">
+                <a href="/pgp.txt">pgp key</a>
+                <span class="dim"
+                  >8C95 0268 8B65 095C A5F7&nbsp;&nbsp;4CFB 35A3 6068 9074
+                  6986</span
+                >
+              </div>
+              <div class="contact-row">
+                <a href="/.well-known/security.txt">security.txt</a>
+                <span class="dim">RFC 9116</span>
+              </div>
+              <p
+                class="entry-desc"
+                style="padding-left: 0; margin-top: 0.75rem"
+              >
+                Encrypted email preferred for anything sensitive. For
+                low-sensitivity contact (acknowledgement, scheduling),
+                unencrypted email is fine.
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <div class="section">
+          <input type="checkbox" id="policy" checked />
+          <label for="policy">disclosure policy</label>
+          <section class="sub-content">
+            <div>
+              <div class="entry">
+                <div class="entry-header">Coordinated disclosure</div>
+                <p class="entry-desc">
+                  Findings are disclosed under a 90-day window from first
+                  contact, shorter by mutual agreement when actively exploited
+                  or when the fix can ship faster.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">Minimum-impact probing</div>
+                <p class="entry-desc">
+                  I do not probe past the minimum required to confirm a finding.
+                  Empty-body requests, single-record reads, and schema
+                  inspection are preferred over enumeration or exploitation.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">No data retention</div>
+                <p class="entry-desc">
+                  I do not retain user data. Reproduction notes contain only
+                  what is needed to demonstrate the finding and are kept as a
+                  defensive audit trail, not as a dataset.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">No public release before fix</div>
+                <p class="entry-desc">
+                  I do not disclose publicly without prior notice to the
+                  affected party and an opportunity to remediate. The 90-day
+                  clock is the ceiling, not the default.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">No bundled commerce</div>
+                <p class="entry-desc">
+                  Disclosure messages do not contain payment requests. If a paid
+                  engagement makes sense as a follow-up, it is proposed
+                  separately after the disclosed issue is acknowledged.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="section">
+          <input type="checkbox" id="expect" checked />
+          <label for="expect">what I expect from recipients</label>
+          <section class="sub-content">
+            <div>
+              <div class="entry">
+                <div class="entry-header">
+                  Acknowledgement within 3 business days
+                </div>
+                <p class="entry-desc">
+                  A reply confirming receipt and naming a contact for ongoing
+                  coordination. Auto-responses do not count.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">
+                  A fix timeline proportional to severity
+                </div>
+                <p class="entry-desc">
+                  Critical findings should land a fix or interim mitigation
+                  within days. Lower-severity findings within the 90-day window.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">
+                  No legal threats for good-faith reporting
+                </div>
+                <p class="entry-desc">
+                  Recipients that respond to coordinated disclosure with
+                  cease-and-desist letters or threats of action will be added to
+                  a public list of organisations to avoid disclosing to.
+                </p>
+              </div>
+              <div class="entry">
+                <div class="entry-header">Optional public acknowledgement</div>
+                <p class="entry-desc">
+                  Once the issue is fixed, a one-line mention in the
+                  acknowledgements section below — only with explicit
+                  permission.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="section">
+          <input type="checkbox" id="engagement" checked />
+          <label for="engagement">engagement work</label>
+          <section class="sub-content">
+            <div>
+              <p class="entry-desc" style="padding-left: 0; margin-top: 0.5rem">
+                For platforms that want a structured review beyond an incidental
+                finding, I take paid security engagements. Typical scope:
+                public-surface audit, authenticated review against a
+                self-provisioned test account, authorisation pattern analysis,
+                and a written disclosure-style deliverable with reproduction
+                commands and remediation steps.
+              </p>
+              <div class="contact-row" style="margin-top: 0.75rem">
+                <a href="mailto:hello@steffensens.io">contact</a>
+                <span class="dim"
+                  >hello@steffensens.io (separate from disclosure address)</span
+                >
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="section">
+          <input type="checkbox" id="acknowledgements" checked />
+          <label for="acknowledgements">acknowledgements</label>
+          <section class="sub-content">
+            <div>
+              <p class="entry-desc" style="padding-left: 0; margin-top: 0.5rem">
+                Organisations I have coordinated disclosure with, listed with
+                their permission.
+              </p>
+              <p
+                class="entry-desc"
+                style="padding-left: 0; margin-top: 0.5rem; color: var(--dim)"
+              >
+                None listed yet.
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <div class="section">
+          <input type="checkbox" id="back" />
+          <label for="back">← home</label>
+          <section class="sub-content">
+            <div>
+              <div class="contact-row" style="margin-top: 0.5rem">
+                <a href="/">home</a>
+                <span class="dim">steffensens.io</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="statusbar">
+        <span class="statusbar-left">╰─ NORMAL</span>
+        <span class="statusbar-right">/security ─╯</span>
+      </div>
+    </div>
+  </body>
+</html>

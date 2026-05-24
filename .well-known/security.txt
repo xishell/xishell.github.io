@@ -1,0 +1,18 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Contact: mailto:security@steffensens.io
+Expires: 2027-07-01T00:00:00.000Z
+Encryption: https://steffensens.io/pgp.txt
+Preferred-Languages: en, sv
+Canonical: https://steffensens.io/.well-known/security.txt
+Policy: https://steffensens.io/security
+Acknowledgments: https://steffensens.io/security#acknowledgements
+-----BEGIN PGP SIGNATURE-----
+
+iKoEARYKAFIWIQSMlQJoi2UJXKX3TPs1o2BokHRphgUCahLF2RsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwwLDMYHHNlY3VyaXR5QHN0ZWZmZW5zZW5zLmlvAAoJEDWj
+YGiQdGmGaIcA/RDxw1Mm6hvnaRLGJUYR4kbb+6ghtzhTFLsXs4/VZ3scAQCqLr/y
+DSgZcQ1PZitudF08hiLOncqCO91vfoavpZp0Dg==
+=aly7
+-----END PGP SIGNATURE-----
