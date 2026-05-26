@@ -6,7 +6,7 @@ author:
   email: elliot@steffensens.io
 
 # active color scheme — change this to swap themes site-wide
-# options: tokyonight, default, gruvbox, catppuccin, onedark
+# options: tokyonight, default, gruvbox, catppuccin, onedark, mauve, lavender, rose, sky, violet
 colorscheme: tokyonight
 
 permalink: /blog/:year/:slug/

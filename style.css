@@ -1,5 +1,30 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -8,12 +33,28 @@
   box-sizing: border-box;
 }
 
-/* ── Color schemes ─────────────────────────────────────────
-   Swap themes by setting <html data-theme="..."> (driven by
-   `colorscheme:` in _config.yml). Each scheme defines the full
-   set of CSS vars used across the site; nothing else in this
-   file references hard-coded colors. Add a new scheme by
-   copying any block below and changing the values. */
+/* order matters: :root then [data-theme], equal specificity so later wins */
+
+:root {
+  --bg: #15161e;
+  --panel: #0e0f17;
+  --border: #2a2b3d;
+  --fg: #cbd3f5;
+  --dim: #6e78a3;
+  --muted: #a0aacc;
+  --accent: #7aa2f7;
+  --sel: #283457;
+  --sel-fg: #ffffff;
+  --string: #9ece6a;
+  --keyword: #bb9af7;
+  --func: #7dcfff;
+  --comment: #6e78a3;
+  --cursor: #7aa2f7;
+  --mode-bg: #7aa2f7;
+  --mode-fg: #0e0f17;
+  --num: #ff9e64;
+  --err: #f7768e;
+}
 
 [data-theme="tokyonight"] {
   --bg: #15161e;
@@ -99,6 +140,114 @@
   --err: #f38ba8;
 }
 
+/* pastel base shared by mauve / lavender / rose / sky variants below.
+   each variant only swaps --accent, --cursor, --mode-bg */
+
+[data-theme="mauve"] {
+  --bg: #16171f;
+  --panel: #11121a;
+  --border: #2a2c3a;
+  --fg: #cad0e0;
+  --dim: #6a7090;
+  --muted: #a8aec8;
+  --accent: #c4a8e8;
+  --sel: #2a2d3d;
+  --sel-fg: #ffffff;
+  --string: #a8d39a;
+  --keyword: #d4a8e8;
+  --func: #9ec6ea;
+  --comment: #6a7090;
+  --cursor: #c4a8e8;
+  --mode-bg: #c4a8e8;
+  --mode-fg: #16171f;
+  --num: #f0b89e;
+  --err: #e8a0b0;
+}
+
+[data-theme="lavender"] {
+  --bg: #16171f;
+  --panel: #11121a;
+  --border: #2a2c3a;
+  --fg: #cad0e0;
+  --dim: #6a7090;
+  --muted: #a8aec8;
+  --accent: #b4befe;
+  --sel: #2a2d3d;
+  --sel-fg: #ffffff;
+  --string: #a8d39a;
+  --keyword: #d4a8e8;
+  --func: #9ec6ea;
+  --comment: #6a7090;
+  --cursor: #b4befe;
+  --mode-bg: #b4befe;
+  --mode-fg: #16171f;
+  --num: #f0b89e;
+  --err: #e8a0b0;
+}
+
+[data-theme="rose"] {
+  --bg: #16171f;
+  --panel: #11121a;
+  --border: #2a2c3a;
+  --fg: #cad0e0;
+  --dim: #6a7090;
+  --muted: #a8aec8;
+  --accent: #e8b8c8;
+  --sel: #2a2d3d;
+  --sel-fg: #ffffff;
+  --string: #a8d39a;
+  --keyword: #d4a8e8;
+  --func: #9ec6ea;
+  --comment: #6a7090;
+  --cursor: #e8b8c8;
+  --mode-bg: #e8b8c8;
+  --mode-fg: #16171f;
+  --num: #f0b89e;
+  --err: #e8a0b0;
+}
+
+[data-theme="violet"] {
+  --bg: #171420;
+  --panel: #100e1a;
+  --border: #2b283a;
+  --fg: #d2cce0;
+  --dim: #73698f;
+  --muted: #aea6c4;
+  --accent: #8d6fd6;
+  --sel: #2c2a3d;
+  --sel-fg: #ffffff;
+  --string: #a8d39a;
+  --keyword: #d4a8e8;
+  --func: #9ec6ea;
+  --comment: #73698f;
+  --cursor: #8d6fd6;
+  --mode-bg: #8d6fd6;
+  --mode-fg: #171420;
+  --num: #f0b89e;
+  --err: #e8a0b0;
+}
+
+[data-theme="sky"] {
+  --bg: #16171f;
+  --panel: #11121a;
+  --border: #2a2c3a;
+  --fg: #cad0e0;
+  --dim: #6a7090;
+  --muted: #a8aec8;
+  --accent: #9ec6ea;
+  --sel: #2a2d3d;
+  --sel-fg: #ffffff;
+  --string: #a8d39a;
+  --keyword: #d4a8e8;
+  --func: #9ec6ea;
+  --comment: #6a7090;
+  --cursor: #9ec6ea;
+  --mode-bg: #9ec6ea;
+  --mode-fg: #16171f;
+  --num: #f0b89e;
+  --err: #e8a0b0;
+}
+
 [data-theme="onedark"] {
   --bg: #1c1f25;
   --panel: #15171c;
@@ -118,28 +267,6 @@
   --mode-fg: #15171c;
   --num: #d19a66;
   --err: #e06c75;
-}
-
-/* fallback if data-theme isn't set on <html> */
-:root {
-  --bg: #15161e;
-  --panel: #0e0f17;
-  --border: #2a2b3d;
-  --fg: #cbd3f5;
-  --dim: #6e78a3;
-  --muted: #a0aacc;
-  --accent: #7aa2f7;
-  --sel: #283457;
-  --sel-fg: #ffffff;
-  --string: #9ece6a;
-  --keyword: #bb9af7;
-  --func: #7dcfff;
-  --comment: #6e78a3;
-  --cursor: #7aa2f7;
-  --mode-bg: #7aa2f7;
-  --mode-fg: #0e0f17;
-  --num: #ff9e64;
-  --err: #f7768e;
 }
 
 html, body {
@@ -374,6 +501,14 @@ a {
 .writing-latest-count {
   color: var(--dim);
   font-size: 11px;
+}
+
+/* heading classes carry the look; reset browser defaults so semantics
+   match (h1/h2/h3 elements with our classes look identical to before) */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 /* ── Body content wrapper (caps reading line length) ──────── */
@@ -778,6 +913,169 @@ a {
 .highlight .ow { color: var(--muted); }
 .highlight .err { color: var(--err); }
 .highlight .p { color: var(--fg); }
+
+/* ── Vim keys help overlay ─────────────────────────────────── */
+
+.vim-help {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 100;
+}
+
+.vim-help-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.75rem;
+  min-width: 22rem;
+  max-width: 32rem;
+  font-size: 13px;
+}
+
+.vim-help-title {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+
+.vim-help-title::before {
+  content: ":help ";
+  color: var(--dim);
+  font-weight: 400;
+}
+
+.vim-help dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1.5rem;
+  row-gap: 0.4rem;
+}
+
+.vim-help dt {
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.vim-help dd {
+  color: var(--muted);
+}
+
+/* ── Telescope picker ──────────────────────────────────────── */
+
+.picker {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 110;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 12vh;
+}
+
+.picker-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: min(48rem, 90vw);
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.picker-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.picker-prompt {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.picker-input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--fg);
+  font: inherit;
+  caret-color: var(--accent);
+}
+
+.picker-input::placeholder {
+  color: var(--dim);
+}
+
+.picker-count {
+  color: var(--dim);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.picker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.picker-item {
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+
+.picker-item-selected {
+  background: var(--sel);
+  border-left-color: var(--accent);
+}
+
+.picker-item-title {
+  color: var(--fg);
+  font-weight: 600;
+  display: block;
+}
+
+.picker-item-selected .picker-item-title {
+  color: var(--sel-fg);
+}
+
+.picker-item-meta {
+  display: block;
+  margin-top: 0.125rem;
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.picker-tag {
+  color: var(--string);
+}
+
+.picker-footer {
+  padding: 0.5rem 1rem;
+  font-size: 11px;
+  color: var(--dim);
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
 
 /* ── Responsive ────────────────────────────────────────────── */
 

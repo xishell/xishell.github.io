@@ -12,9 +12,7 @@ permalink: /blog/
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{ page.description }}" />
     <meta name="theme-color" content="#15161e" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml" />
     <title>{{ page.title }} · {{ site.title }}</title>
@@ -29,7 +27,7 @@ permalink: /blog/
 
       <div class="buffer">
         <div class="md-content">
-        <div class="md-h1">blog</div>
+        <h1 class="md-h1">blog</h1>
         <div class="md-sub">writeups, notes, journal</div>
         <div class="md-comment">{{ entry_label }} · sorted desc by date</div>
 
@@ -38,7 +36,7 @@ permalink: /blog/
             {% assign words = post.content | strip_html | number_of_words %}
             {% assign read = words | divided_by: 200 | plus: 1 %}
             <div class="post-entry">
-              <a href="{{ post.url }}" class="post-entry-title">{{ post.title }}</a>
+              <h2 class="post-entry-heading"><a href="{{ post.url }}" class="post-entry-title">{{ post.title }}</a></h2>
               <div class="post-entry-meta">
                 <span class="post-entry-meta-date">{{ post.date | date: "%Y-%m-%d" }}</span>
                 <span class="post-entry-meta-sep">·</span>

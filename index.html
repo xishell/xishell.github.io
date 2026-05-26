@@ -12,9 +12,7 @@ permalink: /
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{ page.description }}" />
     <meta name="theme-color" content="#15161e" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml" />
     <title>{{ page.title }}</title>
@@ -29,14 +27,14 @@ permalink: /
 
       <div class="buffer" style="flex: 1;">
         <div class="md-content">
-        <div class="md-h1">Elliot Steffensen</div>
+        <h1 class="md-h1">Elliot Steffensen</h1>
         <div class="md-sub">Computer engineering at KTH. Embedded systems, security, sailing.</div>
 
-        <div class="md-section">
+        <h2 class="md-section">
           <span class="md-section-hash">##</span>
           <span>projects</span>
           <span class="md-section-rule"></span>
-        </div>
+        </h2>
         <div class="entry">
           <a href="https://github.com/xishell/crypt-chat" class="md-link" target="_blank" rel="noopener noreferrer">Crypt-Chat on RISC-V</a>
           <div class="entry-desc">
@@ -68,11 +66,11 @@ permalink: /
           </div>
         </div>
 
-        <div class="md-section">
+        <h2 class="md-section">
           <span class="md-section-hash">##</span>
           <span>education</span>
           <span class="md-section-rule"></span>
-        </div>
+        </h2>
         <div class="entry">
           <div class="entry-row">
             KTH Royal Institute of Technology
@@ -84,11 +82,11 @@ permalink: /
           </div>
         </div>
 
-        <div class="md-section">
+        <h2 class="md-section">
           <span class="md-section-hash">##</span>
           <span>experience</span>
           <span class="md-section-rule"></span>
-        </div>
+        </h2>
         <div class="entry">
           <div class="entry-row">
             Stockholm Sailing Association
@@ -110,26 +108,11 @@ permalink: /
           </div>
         </div>
 
-        <div class="md-section">
-          <span class="md-section-hash">##</span>
-          <span>skills</span>
-          <span class="md-section-rule"></span>
-        </div>
-        <div class="entry-desc" style="padding-left: 1rem;">
-          <span style="color: var(--fg);">languages</span> &nbsp; C, Go, Python, Bash, Java, TypeScript
-        </div>
-        <div class="entry-desc" style="padding-left: 1rem;">
-          <span style="color: var(--fg);">systems</span> &nbsp; Linux, concurrent programming, TCP/IP, UART/serial, HTTP/REST
-        </div>
-        <div class="entry-desc" style="padding-left: 1rem;">
-          <span style="color: var(--fg);">tools</span> &nbsp; Git, Meson, Make, Docker, GitHub Actions, NGINX
-        </div>
-
-        <div class="md-section">
+        <h2 class="md-section">
           <span class="md-section-hash">##</span>
           <span>sailing</span>
           <span class="md-section-rule"></span>
-        </div>
+        </h2>
         <div class="entry-desc" style="padding-left: 0;">
           Bowman onboard
           <a href="https://www.wetjobracing.com/" class="md-link" target="_blank" rel="noopener noreferrer">Wetjob Racing</a>
@@ -152,11 +135,11 @@ permalink: /
           <div class="entry-desc">Race around Gotland island, Sweden's biggest yearly offshore race.</div>
         </div>
 
-        <div class="md-section">
+        <h2 class="md-section">
           <span class="md-section-hash">##</span>
           <span>contact</span>
           <span class="md-section-rule"></span>
-        </div>
+        </h2>
         <div class="contact-list">
           <div>
             <a href="mailto:elliot@steffensens.io" class="md-link">email</a>
@@ -192,7 +175,7 @@ permalink: /
         {% endif %}
       </div>
 
-      {% include lualine.html filename="index.md" sections="6 sections" filetype="markdown" position="1,1" percent="Top" %}
+      {% include lualine.html filename="index.md" sections="5 sections" filetype="markdown" position="1,1" percent="Top" %}
     </div>
   </body>
 </html>

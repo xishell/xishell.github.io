@@ -1,0 +1,62 @@
+---
+---
+{%- assign max_per_line = 32 -%}
+{%- assign words = page.title | split: " " -%}
+{%- assign line1 = "" -%}
+{%- assign line2 = "" -%}
+{%- assign overflow = false -%}
+{%- for word in words -%}
+  {%- if overflow -%}
+    {%- if line2 == "" -%}{%- assign line2 = word -%}{%- else -%}{%- assign line2 = line2 | append: " " | append: word -%}{%- endif -%}
+  {%- else -%}
+    {%- if line1 == "" -%}
+      {%- assign line1 = word -%}
+    {%- else -%}
+      {%- capture candidate -%}{{ line1 }} {{ word }}{%- endcapture -%}
+      {%- if candidate.size > max_per_line -%}
+        {%- assign overflow = true -%}
+        {%- assign line2 = word -%}
+      {%- else -%}
+        {%- assign line1 = candidate -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#16171f"/>
+
+  <!-- terminal window -->
+  <rect x="48" y="48" width="1104" height="534" rx="12" fill="#0e0f17" stroke="#2a2b3d" stroke-width="1"/>
+
+  <!-- winbar -->
+  <g font-family="JetBrains Mono, DejaVu Sans Mono, monospace" font-size="22">
+    <text x="84" y="100" fill="#7aa2f7">●</text>
+    <text x="112" y="100" fill="#a0aacc">elliot@steffensens.io</text>
+    <text x="394" y="100" fill="#6e78a3">:</text>
+    <text x="410" y="100" fill="#7dcfff">~/blog/{{ page.slug }}/</text>
+  </g>
+
+  <!-- divider under winbar -->
+  <line x1="48" y1="132" x2="1152" y2="132" stroke="#2a2b3d" stroke-width="1"/>
+
+  <!-- title -->
+  <g font-family="JetBrains Mono, DejaVu Sans Mono, monospace" font-weight="700" fill="#7aa2f7">
+    <text x="88" y="262" font-size="56"># {{ line1 | xml_escape }}</text>
+    {% if line2 != "" %}<text x="88" y="332" font-size="56">{{ line2 | xml_escape }}</text>{% endif %}
+  </g>
+
+  <!-- meta -->
+  <g font-family="JetBrains Mono, DejaVu Sans Mono, monospace" font-size="22">
+    <text x="88" y="412" fill="#6e78a3">" {{ page.date | date: "%Y-%m-%d" }}</text>
+    {% if page.tags %}
+    <text x="88" y="450" fill="#9ece6a">{% for tag in page.tags %}#{{ tag }} {% endfor %}</text>
+    {% endif %}
+  </g>
+
+  <!-- signature -->
+  <g font-family="JetBrains Mono, DejaVu Sans Mono, monospace" font-size="20">
+    <text x="88" y="544" fill="#a0aacc">Elliot Steffensen</text>
+    <text x="88" y="572" fill="#6e78a3">steffensens.io</text>
+  </g>
+</svg>

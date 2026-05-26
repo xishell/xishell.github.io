@@ -10,7 +10,203 @@
   <span class="bubble bubble--utf">utf-8</span>
   <span class="bubble bubble--filetype">{{ include.filetype | default: "markdown" }}</span>
   <span class="bubble bubble--position">
-    {{ include.position | default: "1,1" }}
-    {% if include.percent %}<span class="bubble-percent">{{ include.percent }}</span>{% endif %}
+    <span class="bubble-pos">{{ include.position | default: "1,1" }}</span>
+    <span class="bubble-percent">{{ include.percent | default: "Top" }}</span>
   </span>
 </div>
+
+<script type="application/json" id="picker-data">[
+{% for post in site.posts %}{"title": {{ post.title | jsonify }}, "url": {{ post.url | jsonify }}, "date": "{{ post.date | date: "%Y-%m-%d" }}", "tags": {{ post.tags | jsonify }}, "desc": {{ post.description | default: "" | jsonify }}}{% unless forloop.last %},
+{% endunless %}{% endfor %}
+]</script>
+
+<script>
+(function () {
+  var buf = document.querySelector('.buffer');
+  if (!buf) return;
+  var lh = parseFloat(getComputedStyle(buf).lineHeight) || 22;
+
+  // remember last opened blog post in the tabline
+  var path = window.location.pathname;
+  var isPostPage = /^\/blog\/\d{4}\/.+\/$/.test(path);
+  try {
+    if (isPostPage) {
+      var slug = path.split('/').filter(Boolean).pop();
+      localStorage.setItem('lastPost', JSON.stringify({ url: path, filename: slug + '.md' }));
+    } else {
+      var last = JSON.parse(localStorage.getItem('lastPost') || 'null');
+      var tabline = document.querySelector('.tabline');
+      if (last && tabline) {
+        var tab = document.createElement('a');
+        tab.href = last.url;
+        tab.className = 'tab tab--history';
+        tab.textContent = last.filename;
+        tab.title = 'last opened post';
+        tabline.appendChild(tab);
+      }
+    }
+  } catch (_) {}
+
+  // position bubble
+  var pos = document.querySelector('.bubble-pos');
+  var pct = document.querySelector('.bubble-percent');
+  function updatePos() {
+    var top = buf.scrollTop;
+    var max = buf.scrollHeight - buf.clientHeight;
+    pos.textContent = (Math.floor(top / lh) + 1) + ',1';
+    if (max <= 0) { pct.textContent = 'All'; return; }
+    if (top < 4) { pct.textContent = 'Top'; return; }
+    if (top >= max - 4) { pct.textContent = 'Bot'; return; }
+    pct.textContent = Math.round((top / max) * 100) + '%';
+  }
+  if (pos && pct) {
+    buf.addEventListener('scroll', updatePos, { passive: true });
+    updatePos();
+  }
+
+  // vim-style keys: j k gg G gt gT ? esc
+  var prev = '', prevAt = 0;
+  function isTyping(e) {
+    var t = e.target;
+    return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+  }
+  function switchTab(dir) {
+    var tabs = Array.from(document.querySelectorAll('.tabline a.tab'));
+    if (!tabs.length) return;
+    var i = tabs.findIndex(function (t) { return t.classList.contains('tab--active'); });
+    if (i === -1) i = dir > 0 ? -1 : 0;
+    var next = (i + dir + tabs.length) % tabs.length;
+    tabs[next].click();
+  }
+  function help(open) {
+    var el = document.querySelector('.vim-help');
+    if (el) { el.remove(); return; }
+    if (open === false) return;
+    el = document.createElement('div');
+    el.className = 'vim-help';
+    el.innerHTML = '<div class="vim-help-card"><div class="vim-help-title">keys</div>' +
+      '<dl>' +
+      '<dt>j / k</dt><dd>scroll down / up one line</dd>' +
+      '<dt>g g</dt><dd>top of document</dd>' +
+      '<dt>G</dt><dd>bottom of document</dd>' +
+      '<dt>h / l</dt><dd>previous / next tab</dd>' +
+      '<dt>g t / g T</dt><dd>next / previous tab (vim canon)</dd>' +
+      '<dt>/</dt><dd>find post (fuzzy)</dd>' +
+      '<dt>?</dt><dd>toggle this help</dd>' +
+      '<dt>esc</dt><dd>close</dd>' +
+      '</dl></div>';
+    el.addEventListener('click', function (e) { if (e.target === el) el.remove(); });
+    document.body.appendChild(el);
+  }
+  // telescope-style fuzzy picker for posts
+  var posts = [];
+  try {
+    posts = JSON.parse(document.getElementById('picker-data').textContent);
+  } catch (_) {}
+  function fuzzyMatch(q, text) {
+    q = q.toLowerCase(); text = text.toLowerCase();
+    var qi = 0;
+    for (var i = 0; i < text.length && qi < q.length; i++) if (text[i] === q[qi]) qi++;
+    return qi === q.length;
+  }
+  function openPicker() {
+    if (document.querySelector('.picker')) return;
+    var el = document.createElement('div');
+    el.className = 'picker';
+    el.innerHTML =
+      '<div class="picker-card">' +
+        '<div class="picker-input-row">' +
+          '<span class="picker-prompt">&gt;</span>' +
+          '<input class="picker-input" autocomplete="off" spellcheck="false" placeholder="filter posts..." />' +
+          '<span class="picker-count"></span>' +
+        '</div>' +
+        '<ul class="picker-list"></ul>' +
+        '<div class="picker-footer">↑↓ move · enter open · esc close · type to filter</div>' +
+      '</div>';
+    el.addEventListener('mousedown', function (ev) { if (ev.target === el) closePicker(); });
+    document.body.appendChild(el);
+    var input = el.querySelector('.picker-input');
+    var list = el.querySelector('.picker-list');
+    var count = el.querySelector('.picker-count');
+    var selected = 0;
+    var filtered = posts.slice();
+    function render() {
+      list.innerHTML = filtered.map(function (p, i) {
+        var tags = (p.tags || []).map(function (t) { return '<span class="picker-tag">#' + t + '</span>'; }).join(' ');
+        return '<li class="picker-item' + (i === selected ? ' picker-item-selected' : '') + '" data-i="' + i + '">' +
+          '<span class="picker-item-title">' + p.title + '</span>' +
+          '<span class="picker-item-meta">' + p.date + ' &nbsp; ' + tags + '</span>' +
+          '</li>';
+      }).join('');
+      count.textContent = filtered.length + '/' + posts.length;
+      var sel = list.querySelector('.picker-item-selected');
+      if (sel) sel.scrollIntoView({ block: 'nearest' });
+    }
+    function filter(q) {
+      if (!q) { filtered = posts.slice(); }
+      else {
+        filtered = posts.filter(function (p) {
+          return fuzzyMatch(q, p.title) || fuzzyMatch(q, (p.tags || []).join(' '));
+        });
+      }
+      selected = 0;
+      render();
+    }
+    function go() {
+      var p = filtered[selected];
+      if (p) window.location.href = p.url;
+    }
+    input.addEventListener('input', function () { filter(input.value); });
+    input.addEventListener('keydown', function (ev) {
+      var emptyJk = input.value === '' && (ev.key === 'j' || ev.key === 'k');
+      if (ev.key === 'Escape') { closePicker(); ev.preventDefault(); }
+      else if (ev.key === 'Enter') { go(); ev.preventDefault(); }
+      else if (ev.key === 'ArrowDown' || (ev.ctrlKey && ev.key === 'j') || (emptyJk && ev.key === 'j')) {
+        selected = Math.min(filtered.length - 1, selected + 1); render(); ev.preventDefault();
+      }
+      else if (ev.key === 'ArrowUp' || (ev.ctrlKey && ev.key === 'k') || (emptyJk && ev.key === 'k')) {
+        selected = Math.max(0, selected - 1); render(); ev.preventDefault();
+      }
+    });
+    list.addEventListener('click', function (ev) {
+      var li = ev.target.closest('.picker-item');
+      if (!li) return;
+      selected = Number(li.dataset.i);
+      go();
+    });
+    render();
+    input.focus();
+  }
+  function closePicker() {
+    var el = document.querySelector('.picker');
+    if (el) el.remove();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (isTyping(e) || e.altKey || e.ctrlKey || e.metaKey) return;
+    var k = e.key;
+    var now = Date.now();
+    var recent = (now - prevAt) < 700;
+    if (recent && prev === 'g') {
+      prev = '';
+      if (k === 'g') { buf.scrollTo({ top: 0, behavior: 'smooth' }); e.preventDefault(); return; }
+      if (k === 't') { switchTab(+1); e.preventDefault(); return; }
+      if (k === 'T') { switchTab(-1); e.preventDefault(); return; }
+    }
+    if (k === 'g') { prev = 'g'; prevAt = now; return; }
+    if (k === 'j') { buf.scrollBy({ top: lh }); e.preventDefault(); }
+    else if (k === 'k') { buf.scrollBy({ top: -lh }); e.preventDefault(); }
+    else if (k === 'h') { switchTab(-1); e.preventDefault(); }
+    else if (k === 'l') { switchTab(+1); e.preventDefault(); }
+    else if (k === 'G') { buf.scrollTo({ top: buf.scrollHeight, behavior: 'smooth' }); e.preventDefault(); }
+    else if (k === '/') { openPicker(); e.preventDefault(); }
+    else if (k === '?') { help(); e.preventDefault(); }
+    else if (k === 'Escape') {
+      var openHelp = document.querySelector('.vim-help');
+      if (openHelp) { openHelp.remove(); e.preventDefault(); return; }
+    }
+    prev = '';
+  });
+})();
+</script>
+

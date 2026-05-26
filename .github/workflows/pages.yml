@@ -27,6 +27,19 @@ jobs:
       - run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      - name: Install rsvg-convert and JetBrains Mono
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin fonts-jetbrains-mono
+          fc-cache -f
+      - name: Convert OG SVGs to PNGs
+        run: |
+          if [ -d _site/og ]; then
+            for svg in _site/og/*.svg; do
+              rsvg-convert -w 1200 -h 630 "$svg" -o "${svg%.svg}.png"
+            done
+            ls -la _site/og/
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
