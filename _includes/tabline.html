@@ -1,0 +1,9 @@
+<div class="tabline">
+  {% assign active = include.active | default: "index.md" %}
+  <a href="/" class="tab{% if active == 'index.md' %} tab--active{% endif %}">index.md</a>
+  <a href="/blog/" class="tab{% if active == 'blog/' %} tab--active{% endif %}">blog/</a>
+  <a href="/security/" class="tab{% if active == 'security.md' %} tab--active{% endif %}">security.md</a>
+  {% if include.extra %}
+    <span class="tab tab--active">{{ include.extra }}</span>
+  {% endif %}
+</div>

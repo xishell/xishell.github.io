@@ -1,0 +1,40 @@
+title: Elliot Steffensen
+description: Software engineer and sailor. Writing on security, systems, and embedded.
+url: https://steffensens.io
+author:
+  name: Elliot Steffensen
+  email: elliot@steffensens.io
+
+# active color scheme — change this to swap themes site-wide
+# options: tokyonight, default, gruvbox, catppuccin, onedark
+colorscheme: tokyonight
+
+permalink: /blog/:year/:slug/
+timezone: Europe/Stockholm
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: false
+
+defaults:
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

@@ -1,27 +1,34 @@
----
-layout: none
-title: Security
-description: Security contact and coordinated-disclosure policy for Elliot Steffensen.
-permalink: /security/
----
 <!doctype html>
-<html lang="en" data-theme="{{ site.colorscheme | default: 'tokyonight' }}">
+<html lang="en" data-theme="tokyonight">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{{ page.description }}" />
+    <meta name="description" content="Security contact and coordinated-disclosure policy for Elliot Steffensen." />
     <meta name="theme-color" content="#15161e" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/style.css" />
-    <title>{{ page.title }} · {{ site.title }}</title>
+    <title>Security · Elliot Steffensen</title>
   </head>
   <body>
     <div class="vim-frame">
-      {% include winbar.html path="~/security/" %}
-      {% include tabline.html active="security.md" %}
+      <div class="winbar">
+  <span class="winbar-dot">●</span>
+  <a href="/" class="winbar-host">elliot@steffensens.io</a>
+  <span class="winbar-sep">:</span>
+  <span class="winbar-path">~/security/</span>
+</div>
+
+      <div class="tabline">
+  
+  <a href="/" class="tab">index.md</a>
+  <a href="/blog/" class="tab">blog/</a>
+  <a href="/security/" class="tab tab--active">security.md</a>
+  
+</div>
+
 
       <div class="buffer">
         <div class="md-content">
@@ -139,7 +146,23 @@ permalink: /security/
         </div>
       </div>
 
-      {% include lualine.html filename="security.md" sections="4 sections" filetype="markdown" position="1,1" percent="Top" %}
+      <div class="lualine">
+  <span class="bubble bubble--mode">NORMAL</span>
+  <span class="bubble bubble--filename">
+    <span class="bubble-diamond">◆</span>security.md
+  </span>
+  
+    <span class="bubble"><span class="bubble-bar">▎</span>4 sections</span>
+  
+  <span class="lualine-spacer"></span>
+  <span class="bubble bubble--utf">utf-8</span>
+  <span class="bubble bubble--filetype">markdown</span>
+  <span class="bubble bubble--position">
+    1,1
+    <span class="bubble-percent">Top</span>
+  </span>
+</div>
+
     </div>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<div class="lualine">
+  <span class="bubble bubble--mode">NORMAL</span>
+  <span class="bubble bubble--filename">
+    <span class="bubble-diamond">◆</span>{{ include.filename | default: "index.md" }}
+  </span>
+  {% if include.sections %}
+    <span class="bubble"><span class="bubble-bar">▎</span>{{ include.sections }}</span>
+  {% endif %}
+  <span class="lualine-spacer"></span>
+  <span class="bubble bubble--utf">utf-8</span>
+  <span class="bubble bubble--filetype">{{ include.filetype | default: "markdown" }}</span>
+  <span class="bubble bubble--position">
+    {{ include.position | default: "1,1" }}
+    {% if include.percent %}<span class="bubble-percent">{{ include.percent }}</span>{% endif %}
+  </span>
+</div>

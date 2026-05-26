@@ -1,0 +1,67 @@
+---
+layout: none
+title: Blog
+description: Writeups, notes, and journal entries on security, systems, and embedded.
+permalink: /blog/
+---
+<!doctype html>
+<html lang="en" data-theme="{{ site.colorscheme | default: 'tokyonight' }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ page.description }}" />
+    <meta name="theme-color" content="#15161e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml" />
+    <title>{{ page.title }} · {{ site.title }}</title>
+  </head>
+  <body>
+    {% assign post_count = site.posts | size %}
+    {% capture entry_label %}{{ post_count }} entr{% if post_count == 1 %}y{% else %}ies{% endif %}{% endcapture %}
+
+    <div class="vim-frame">
+      {% include winbar.html path="~/blog/" %}
+      {% include tabline.html active="blog/" %}
+
+      <div class="buffer">
+        <div class="md-content">
+        <div class="md-h1">blog</div>
+        <div class="md-sub">writeups, notes, journal</div>
+        <div class="md-comment">{{ entry_label }} · sorted desc by date</div>
+
+        <div style="padding-top: 0.5rem;">
+          {% for post in site.posts %}
+            {% assign words = post.content | strip_html | number_of_words %}
+            {% assign read = words | divided_by: 200 | plus: 1 %}
+            <div class="post-entry">
+              <a href="{{ post.url }}" class="post-entry-title">{{ post.title }}</a>
+              <div class="post-entry-meta">
+                <span class="post-entry-meta-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                <span class="post-entry-meta-sep">·</span>
+                <span class="post-entry-meta-read">{{ read }} min</span>
+                {% if post.tags and post.tags.size > 0 %}
+                  <span class="post-entry-meta-sep">·</span>
+                  {% for tag in post.tags %}<span class="post-entry-meta-tag">#{{ tag }}</span>{% endfor %}
+                {% endif %}
+              </div>
+              {% if post.description %}
+                <div class="post-entry-excerpt">{{ post.description }}</div>
+              {% elsif post.excerpt %}
+                <div class="post-entry-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</div>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="post-entry-excerpt" style="padding-left: 0;">no entries yet.</div>
+          {% endfor %}
+        </div>
+        </div>
+      </div>
+
+      {% include lualine.html filename="blog/index.md" sections=entry_label filetype="markdown" position="1,1" percent="Top" %}
+    </div>
+  </body>
+</html>

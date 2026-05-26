@@ -1,31 +1,38 @@
----
-layout: none
-title: Elliot Steffensen
-description: Software engineer and sailor. Bare-metal RISC-V encrypted chat, fullstack web apps, and offshore racing.
-permalink: /
----
 <!doctype html>
-<html lang="en" data-theme="{{ site.colorscheme | default: 'tokyonight' }}">
+<html lang="en" data-theme="tokyonight">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{{ page.description }}" />
+    <meta name="description" content="Software engineer and sailor. Bare-metal RISC-V encrypted chat, fullstack web apps, and offshore racing." />
     <meta name="theme-color" content="#15161e" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/style.css" />
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml" />
-    <title>{{ page.title }}</title>
+    <link rel="alternate" type="application/atom+xml" title="Elliot Steffensen" href="/feed.xml" />
+    <title>Elliot Steffensen</title>
   </head>
   <body>
-    {% assign latest = site.posts.first %}
-    {% assign post_count = site.posts | size %}
+    
+    
 
     <div class="vim-frame">
-      {% include winbar.html path="~/" %}
-      {% include tabline.html active="index.md" %}
+      <div class="winbar">
+  <span class="winbar-dot">●</span>
+  <a href="/" class="winbar-host">elliot@steffensens.io</a>
+  <span class="winbar-sep">:</span>
+  <span class="winbar-path">~/</span>
+</div>
+
+      <div class="tabline">
+  
+  <a href="/" class="tab tab--active">index.md</a>
+  <a href="/blog/" class="tab">blog/</a>
+  <a href="/security/" class="tab">security.md</a>
+  
+</div>
+
 
       <div class="buffer" style="flex: 1;">
         <div class="md-content">
@@ -175,24 +182,40 @@ permalink: /
 
         <div style="flex: 1; min-height: 1rem;"></div>
 
-        {% if latest %}
-          {% assign latest_words = latest.content | strip_html | number_of_words %}
-          {% assign latest_read = latest_words | divided_by: 200 | plus: 1 %}
+        
+          
+          
           <div class="writing-latest">
             <span class="writing-latest-label">latest</span>
             <span class="writing-latest-sep">·</span>
-            <a href="{{ latest.url }}" class="md-link">{{ latest.title }}</a>
-            <span class="writing-latest-date">{{ latest.date | date: "%Y-%m-%d" }}</span>
+            <a href="/blog/2026/hello-world/" class="md-link">Hello, /blog</a>
+            <span class="writing-latest-date">2026-05-26</span>
             <span class="writing-latest-sep">·</span>
-            <span class="writing-latest-read">{{ latest_read }} min</span>
+            <span class="writing-latest-read">1 min</span>
             <span class="writing-latest-spacer"></span>
             <a href="/blog/" class="md-link">all writing →</a>
-            <span class="writing-latest-count">{{ post_count }}</span>
+            <span class="writing-latest-count">1</span>
           </div>
-        {% endif %}
+        
       </div>
 
-      {% include lualine.html filename="index.md" sections="6 sections" filetype="markdown" position="1,1" percent="Top" %}
+      <div class="lualine">
+  <span class="bubble bubble--mode">NORMAL</span>
+  <span class="bubble bubble--filename">
+    <span class="bubble-diamond">◆</span>index.md
+  </span>
+  
+    <span class="bubble"><span class="bubble-bar">▎</span>6 sections</span>
+  
+  <span class="lualine-spacer"></span>
+  <span class="bubble bubble--utf">utf-8</span>
+  <span class="bubble bubble--filetype">markdown</span>
+  <span class="bubble bubble--position">
+    1,1
+    <span class="bubble-percent">Top</span>
+  </span>
+</div>
+
     </div>
   </body>
 </html>
