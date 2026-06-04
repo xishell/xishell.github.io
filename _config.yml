@@ -38,3 +38,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+
+# jekyll skips dotfiles by default; force-copy security.txt (rfc 9116)
+include:
+  - .well-known
