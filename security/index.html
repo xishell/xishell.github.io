@@ -13,7 +13,8 @@ permalink: /security/
     <meta name="description" content="{{ page.description }}" />
     <meta name="theme-color" content="#15161e" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="preload" href="/assets/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <style>{% include style.css %}</style>
     <title>{{ page.title }} · {{ site.title }}</title>
   </head>
   <body>
@@ -21,7 +22,7 @@ permalink: /security/
       {% include winbar.html path="~/security/" %}
       {% include tabline.html active="security.md" %}
 
-      <div class="buffer">
+      <main class="buffer">
         <div class="md-content">
         <h1 class="md-h1">security</h1>
         <div class="md-sub">Contact and coordinated-disclosure policy</div>
@@ -135,7 +136,7 @@ permalink: /security/
         </div>
 
         </div>
-      </div>
+      </main>
 
       {% include lualine.html filename="security.md" sections="4 sections" filetype="markdown" position="1,1" percent="Top" %}
     </div>

@@ -24,7 +24,7 @@
 (function () {
   var buf = document.querySelector('.buffer');
   if (!buf) return;
-  var lh = parseFloat(getComputedStyle(buf).lineHeight) || 22;
+  var lh = 22; // real value read in rAF below to avoid load-time forced reflow
 
   // remember last opened blog post in the tabline
   var path = window.location.pathname;
@@ -61,7 +61,10 @@
   }
   if (pos && pct) {
     buf.addEventListener('scroll', updatePos, { passive: true });
-    updatePos();
+    requestAnimationFrame(function () {
+      lh = parseFloat(getComputedStyle(buf).lineHeight) || 22;
+      updatePos();
+    });
   }
 
   // vim-style keys: j k gg G gt gT ? esc
